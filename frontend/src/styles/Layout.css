@@ -1,0 +1,535 @@
+.ideatech-layout {
+  min-height: 100vh;
+  background: #f3f6fb;
+}
+
+body.ideatech-menu-bloqueado {
+  overflow: hidden;
+}
+
+.ideatech-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 40;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 18px 20px;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(59, 130, 246, 0.25),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #071a38,
+      #0a2852
+    );
+  box-shadow:
+    12px 0 35px rgba(12, 35, 67, 0.1);
+  box-sizing: border-box;
+}
+
+.ideatech-sidebar-marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 9px 27px;
+}
+
+.ideatech-sidebar-logo {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    #38bdf8,
+    #2563eb
+  );
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+.ideatech-sidebar-marca
+  > div:nth-child(2) {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ideatech-sidebar-marca strong {
+  font-size: 20px;
+}
+
+.ideatech-sidebar-marca span {
+  color: #91abd0;
+  font-size: 10px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.ideatech-sidebar-cerrar {
+  display: none;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  margin-left: auto;
+  border: 0;
+  border-radius: 10px;
+  color: #c7d7eb;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.ideatech-sidebar-cerrar:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ideatech-sidebar-menu {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(150, 180, 220, 0.35)
+    transparent;
+}
+
+.ideatech-sidebar-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.ideatech-sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ideatech-sidebar-menu::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background:
+    rgba(150, 180, 220, 0.35);
+}
+
+.ideatech-sidebar-seccion {
+  margin: 0 10px 10px;
+  color: #6f8db5;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.ideatech-menu-enlace {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 5px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  color: #aebfda;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ideatech-menu-enlace svg {
+  flex: 0 0 auto;
+}
+
+.ideatech-menu-enlace span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ideatech-menu-enlace:hover {
+  transform: translateX(2px);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ideatech-menu-enlace.activo {
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #0284c7
+  );
+  box-shadow:
+    0 9px 22px rgba(37, 99, 235, 0.27);
+}
+
+.ideatech-sidebar-usuario {
+  display: grid;
+  grid-template-columns:
+    38px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 13px 10px;
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ideatech-usuario-avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #ffffff;
+  background: #2563eb;
+  font-weight: 800;
+}
+
+.ideatech-usuario-informacion {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ideatech-usuario-informacion strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ideatech-usuario-informacion span {
+  margin-top: 2px;
+  color: #829bc0;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.ideatech-sidebar-usuario button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  color: #9fb4d4;
+  background: rgba(255, 255, 255, 0.07);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ideatech-sidebar-usuario button:hover {
+  color: #ffffff;
+  background: #dc2626;
+}
+
+.ideatech-sidebar-fondo {
+  display: none;
+}
+
+.ideatech-layout-principal {
+  min-height: 100vh;
+  margin-left: 270px;
+}
+
+.ideatech-header {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 34px;
+  border-bottom: 1px solid #e1e8f1;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+.ideatech-header-identidad {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.ideatech-header-identidad > div {
+  min-width: 0;
+}
+
+.ideatech-menu-boton {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #dce5ef;
+  border-radius: 11px;
+  color: #31506f;
+  background: #f8fafc;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ideatech-menu-boton:hover {
+  border-color: #bfcee0;
+  color: #1d4ed8;
+  background: #edf4ff;
+}
+
+.ideatech-header p {
+  margin: 0 0 3px;
+  color: #8090a5;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ideatech-header h2 {
+  overflow: hidden;
+  margin: 0;
+  color: #142945;
+  font-size: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ideatech-header-acciones,
+.ideatech-header-fecha {
+  display: flex;
+  align-items: center;
+}
+
+.ideatech-header-acciones {
+  flex: 0 0 auto;
+  gap: 13px;
+}
+
+.ideatech-header-fecha {
+  gap: 8px;
+  color: #657991;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.ideatech-header-notificaciones {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #536b89;
+  background: #edf3fa;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ideatech-header-notificaciones:hover {
+  transform: translateY(-1px);
+  color: #1d4ed8;
+  background: #e4edff;
+}
+
+.ideatech-contenido {
+  padding: 30px 34px 45px;
+}
+
+.ideatech-pagina-pendiente {
+  min-height: 460px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  padding: 35px;
+  border: 1px solid #e2e9f2;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 14px 35px rgba(17, 42, 76, 0.06);
+  text-align: center;
+}
+
+.ideatech-pagina-pendiente > div {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  color: #2563eb;
+  background: #eaf2ff;
+}
+
+.ideatech-pagina-pendiente p {
+  margin: 20px 0 5px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ideatech-pagina-pendiente h1 {
+  margin: 0 0 10px;
+  color: #152b47;
+}
+
+.ideatech-pagina-pendiente span {
+  color: #71839a;
+}
+
+.ruta-cargando {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  color: #173354;
+  background: #f3f6fb;
+}
+
+.ruta-cargando svg {
+  color: #2563eb;
+}
+
+.ruta-cargando p {
+  margin: 0;
+}
+
+@media (max-width: 850px) {
+  .ideatech-sidebar {
+    width: min(290px, 86vw);
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition:
+      transform 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .ideatech-sidebar.abierto {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .ideatech-sidebar-cerrar {
+    display: grid;
+  }
+
+  .ideatech-sidebar-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: rgba(3, 15, 33, 0.58);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+    animation:
+      ideatech-fondo-aparecer 0.2s ease;
+  }
+
+  .ideatech-layout-principal {
+    margin-left: 0;
+  }
+
+  .ideatech-menu-boton {
+    display: grid;
+  }
+
+  .ideatech-header-fecha {
+    display: none;
+  }
+
+  .ideatech-contenido {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ideatech-header {
+    height: 74px;
+    padding: 0 16px;
+  }
+
+  .ideatech-header p {
+    font-size: 9px;
+  }
+
+  .ideatech-header h2 {
+    max-width: 170px;
+    font-size: 17px;
+  }
+
+  .ideatech-menu-boton {
+    width: 39px;
+    height: 39px;
+  }
+
+  .ideatech-header-notificaciones {
+    width: 37px;
+    height: 37px;
+  }
+
+  .ideatech-contenido {
+    padding: 18px 14px 32px;
+  }
+
+  .ideatech-sidebar {
+    padding:
+      21px 15px 17px;
+  }
+
+  .ideatech-sidebar-marca {
+    padding:
+      0 7px 23px;
+  }
+
+  .ideatech-sidebar-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ideatech-sidebar-marca strong {
+    font-size: 18px;
+  }
+}
+
+@keyframes ideatech-fondo-aparecer {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ideatech-sidebar,
+  .ideatech-sidebar-fondo,
+  .ideatech-menu-enlace,
+  .ideatech-menu-boton,
+  .ideatech-header-notificaciones {
+    animation: none;
+    transition: none;
+  }
+}

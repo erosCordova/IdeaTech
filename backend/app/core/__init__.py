@@ -1,0 +1,1 @@
+"""Aplicación backend de IdeaTech.""""""Configuración central del backend de IdeaTech."""
