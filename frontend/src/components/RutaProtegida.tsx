@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
+import { Navigate } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 
@@ -34,7 +34,20 @@ export default function RutaProtegida({
     return <Navigate to="/login" replace />;
   }
 
-  if (!perfil?.activo) {
+  if (!perfil) {
+    return (
+      <main className="ruta-cargando">
+        <h1>Perfil no disponible</h1>
+
+        <p>
+          No se pudo cargar la información de tu cuenta.
+          Recarga la página o comunícate con el administrador.
+        </p>
+      </main>
+    );
+  }
+
+  if (!perfil.activo) {
     return (
       <main className="ruta-cargando">
         <h1>Cuenta inactiva</h1>

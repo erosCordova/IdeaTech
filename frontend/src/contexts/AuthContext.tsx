@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -62,13 +63,15 @@ export function AuthProvider({
   const [perfil, setPerfil] = useState<Perfil | null>(null);
   const [cargando, setCargando] = useState(true);
 
+  const solicitudSesionActual = useRef(0);
+
   const obtenerPerfil = useCallback(
     async (usuarioId: string): Promise<Perfil | null> => {
       const { data, error } = await supabase
         .from("perfiles")
         .select("*")
         .eq("id", usuarioId)
-        .single();
+        .maybeSingle();
 
       if (error) {
         console.error(
@@ -79,17 +82,29 @@ export function AuthProvider({
         return null;
       }
 
-      return data as Perfil;
+      return data as Perfil | null;
     },
     []
   );
 
   const establecerSesion = useCallback(
     async (sesionActual: Session | null): Promise<void> => {
-      setSesion(sesionActual);
-      setUsuario(sesionActual?.user ?? null);
+      const numeroSolicitud =
+        solicitudSesionActual.current + 1;
+
+      solicitudSesionActual.current = numeroSolicitud;
+      setCargando(true);
 
       if (!sesionActual?.user) {
+        if (
+          numeroSolicitud !==
+          solicitudSesionActual.current
+        ) {
+          return;
+        }
+
+        setSesion(null);
+        setUsuario(null);
         setPerfil(null);
         setCargando(false);
         return;
@@ -99,6 +114,15 @@ export function AuthProvider({
         sesionActual.user.id
       );
 
+      if (
+        numeroSolicitud !==
+        solicitudSesionActual.current
+      ) {
+        return;
+      }
+
+      setSesion(sesionActual);
+      setUsuario(sesionActual.user);
       setPerfil(perfilEncontrado);
       setCargando(false);
     },
@@ -111,8 +135,12 @@ export function AuthProvider({
       return;
     }
 
+    setCargando(true);
+
     const perfilActualizado = await obtenerPerfil(usuario.id);
+
     setPerfil(perfilActualizado);
+    setCargando(false);
   }, [obtenerPerfil, usuario]);
 
   const iniciarSesion = useCallback(
@@ -120,15 +148,24 @@ export function AuthProvider({
       correo: string,
       contrasena: string
     ): Promise<ResultadoAutenticacion> => {
-      const { error } =
+      setCargando(true);
+
+      const { data, error } =
         await supabase.auth.signInWithPassword({
           email: correo.trim().toLowerCase(),
           password: contrasena,
         });
 
-      return { error };
+      if (error) {
+        setCargando(false);
+        return { error };
+      }
+
+      await establecerSesion(data.session);
+
+      return { error: null };
     },
-    []
+    [establecerSesion]
   );
 
   const registrarUsuario = useCallback(
@@ -156,15 +193,22 @@ export function AuthProvider({
 
   const cerrarSesion =
     useCallback(async (): Promise<ResultadoAutenticacion> => {
+      setCargando(true);
+
       const { error } = await supabase.auth.signOut();
 
-      if (!error) {
-        setSesion(null);
-        setUsuario(null);
-        setPerfil(null);
+      if (error) {
+        setCargando(false);
+        return { error };
       }
 
-      return { error };
+      solicitudSesionActual.current += 1;
+      setSesion(null);
+      setUsuario(null);
+      setPerfil(null);
+      setCargando(false);
+
+      return { error: null };
     }, []);
 
   useEffect(() => {
