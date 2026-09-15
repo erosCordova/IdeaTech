@@ -51,6 +51,10 @@ const Predicciones = lazy(
   () => import("./pages/Predicciones"),
 );
 
+const Presentacion = lazy(
+  () => import("./pages/Presentacion"),
+);
+
 const Registro = lazy(
   () => import("./pages/Registro"),
 );
@@ -101,6 +105,11 @@ export default function App() {
     <BrowserRouter>
       <Suspense fallback={<CargandoPagina />}>
         <Routes>
+          <Route
+            path="/presentacion"
+            element={<Presentacion />}
+          />
+
           <Route
             path="/login"
             element={<RutaPublica />}
@@ -270,7 +279,7 @@ export default function App() {
             path="*"
             element={
               <Navigate
-                to="/"
+                to="/presentacion"
                 replace
               />
             }

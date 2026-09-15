@@ -1,0 +1,751 @@
+.ideatech-presentacion {
+  min-height: 100vh;
+  color: #142943;
+  background: #f5f8fc;
+  scroll-behavior: smooth;
+}
+
+.ideatech-presentacion * {
+  box-sizing: border-box;
+}
+
+.ideatech-presentacion-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 14px clamp(24px, 6vw, 90px);
+  border-bottom: 1px solid rgba(214, 225, 238, 0.85);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+}
+
+.ideatech-presentacion-marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ideatech-presentacion-logo {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  box-shadow: 0 11px 25px rgba(37, 99, 235, 0.25);
+}
+
+.ideatech-presentacion-marca > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.ideatech-presentacion-marca strong {
+  color: #102846;
+  font-size: 19px;
+}
+
+.ideatech-presentacion-marca small {
+  margin-top: 1px;
+  color: #7488a2;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.ideatech-presentacion-navegacion {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.ideatech-presentacion-navegacion > a {
+  color: #536b87;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ideatech-presentacion-navegacion > a:hover {
+  color: #2563eb;
+}
+
+.ideatech-presentacion-navegacion
+  .ideatech-presentacion-ingresar {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 17px;
+  border-radius: 11px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1d4ed8, #0284c7);
+  box-shadow: 0 9px 20px rgba(37, 99, 235, 0.22);
+}
+
+.ideatech-presentacion-hero {
+  min-height: calc(100vh - 78px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.9fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 110px);
+  padding: 75px clamp(24px, 7vw, 110px);
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(56, 189, 248, 0.26),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 12% 88%,
+      rgba(37, 99, 235, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(145deg, #071a38, #0b2a58 60%, #12447f);
+}
+
+.ideatech-presentacion-hero-contenido {
+  max-width: 690px;
+}
+
+.ideatech-presentacion-etiqueta {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px;
+  padding: 8px 12px;
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  border-radius: 30px;
+  color: #7dd3fc;
+  background: rgba(14, 165, 233, 0.08);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.ideatech-presentacion-hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 5.5vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+}
+
+.ideatech-presentacion-hero h1 span {
+  color: #7dd3fc;
+}
+
+.ideatech-presentacion-descripcion {
+  max-width: 640px;
+  margin: 28px 0 33px;
+  color: #c2d5ed;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.75;
+}
+
+.ideatech-presentacion-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+}
+
+.ideatech-presentacion-boton-principal,
+.ideatech-presentacion-boton-secundario {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  border-radius: 13px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.ideatech-presentacion-boton-principal {
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.32);
+}
+
+.ideatech-presentacion-boton-secundario {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ideatech-presentacion-boton-principal:hover,
+.ideatech-presentacion-boton-secundario:hover {
+  transform: translateY(-2px);
+}
+
+.ideatech-presentacion-beneficios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 29px;
+}
+
+.ideatech-presentacion-beneficios span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #a9bfdc;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.ideatech-presentacion-beneficios svg {
+  color: #4ade80;
+}
+
+.ideatech-presentacion-visual {
+  position: relative;
+}
+
+.ideatech-presentacion-panel {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 32px 75px rgba(0, 10, 31, 0.35);
+  transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+}
+
+.ideatech-presentacion-panel-cabecera {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 17px;
+  border-bottom: 1px solid #e5ebf3;
+  background: #f8fafc;
+}
+
+.ideatech-presentacion-panel-cabecera > div {
+  display: flex;
+  gap: 6px;
+}
+
+.ideatech-presentacion-panel-cabecera > div span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.ideatech-presentacion-panel-cabecera > div span:first-child {
+  background: #fb7185;
+}
+
+.ideatech-presentacion-panel-cabecera > div span:nth-child(2) {
+  background: #fbbf24;
+}
+
+.ideatech-presentacion-panel-cabecera > div span:last-child {
+  background: #4ade80;
+}
+
+.ideatech-presentacion-panel-cabecera small {
+  color: #74849a;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.ideatech-presentacion-panel-contenido {
+  padding: 25px;
+  color: #152b47;
+}
+
+.ideatech-presentacion-panel-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.ideatech-presentacion-panel-titulo div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ideatech-presentacion-panel-titulo small {
+  color: #7c8da3;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.ideatech-presentacion-panel-titulo strong {
+  font-size: 18px;
+}
+
+.ideatech-presentacion-panel-titulo svg {
+  color: #2563eb;
+}
+
+.ideatech-presentacion-indicadores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 21px 0;
+}
+
+.ideatech-presentacion-indicadores article {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid #e6ecf3;
+  border-radius: 13px;
+  background: #ffffff;
+}
+
+.ideatech-presentacion-indicadores article > span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.ideatech-presentacion-indicadores span.azul {
+  color: #2563eb;
+  background: #eaf1ff;
+}
+
+.ideatech-presentacion-indicadores span.morado {
+  color: #7c3aed;
+  background: #f1eaff;
+}
+
+.ideatech-presentacion-indicadores span.verde {
+  color: #16a34a;
+  background: #eafbef;
+}
+
+.ideatech-presentacion-indicadores article div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ideatech-presentacion-indicadores small {
+  overflow: hidden;
+  color: #8493a7;
+  font-size: 9px;
+  text-overflow: ellipsis;
+}
+
+.ideatech-presentacion-indicadores strong {
+  font-size: 12px;
+}
+
+.ideatech-presentacion-grafico {
+  padding: 17px;
+  border-radius: 14px;
+  background: #f5f8fc;
+}
+
+.ideatech-presentacion-grafico > div {
+  height: 125px;
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+  padding-top: 12px;
+  border-bottom: 1px solid #d7e1ed;
+}
+
+.ideatech-presentacion-grafico span {
+  flex: 1;
+  border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, #38bdf8, #2563eb);
+}
+
+.ideatech-presentacion-grafico p {
+  margin: 10px 0 0;
+  color: #75869c;
+  font-size: 10px;
+  text-align: center;
+}
+
+.ideatech-presentacion-tarjeta-flotante {
+  position: absolute;
+  right: -25px;
+  bottom: -25px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 17px;
+  border: 1px solid #dce6f1;
+  border-radius: 14px;
+  color: #17304f;
+  background: #ffffff;
+  box-shadow: 0 18px 35px rgba(2, 20, 49, 0.22);
+}
+
+.ideatech-presentacion-tarjeta-flotante > span {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.ideatech-presentacion-tarjeta-flotante div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ideatech-presentacion-tarjeta-flotante strong {
+  font-size: 12px;
+}
+
+.ideatech-presentacion-tarjeta-flotante small {
+  color: #7d8da1;
+  font-size: 9px;
+}
+
+.ideatech-presentacion-seccion {
+  padding: 90px clamp(24px, 7vw, 110px);
+}
+
+.ideatech-presentacion-seccion-titulo {
+  max-width: 720px;
+  margin: 0 auto 43px;
+  text-align: center;
+}
+
+.ideatech-presentacion-seccion-titulo p,
+.ideatech-presentacion-seguridad p {
+  margin: 0 0 10px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.ideatech-presentacion-seccion-titulo h2,
+.ideatech-presentacion-seguridad h2 {
+  margin: 0;
+  color: #122944;
+  font-size: clamp(28px, 3.5vw, 43px);
+  letter-spacing: -1.4px;
+}
+
+.ideatech-presentacion-seccion-titulo > span,
+.ideatech-presentacion-seguridad > div:nth-child(2) > span {
+  display: block;
+  margin-top: 15px;
+  color: #71839a;
+  line-height: 1.65;
+}
+
+.ideatech-presentacion-funciones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.ideatech-presentacion-funciones article {
+  padding: 25px;
+  border: 1px solid #e0e8f2;
+  border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 40, 73, 0.055);
+  transition: 0.2s ease;
+}
+
+.ideatech-presentacion-funciones article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(15, 40, 73, 0.1);
+}
+
+.ideatech-presentacion-funcion-icono {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 13px;
+}
+
+.ideatech-presentacion-funcion-icono.azul {
+  color: #2563eb;
+  background: #eaf1ff;
+}
+
+.ideatech-presentacion-funcion-icono.celeste {
+  color: #0284c7;
+  background: #e0f2fe;
+}
+
+.ideatech-presentacion-funcion-icono.morado {
+  color: #7c3aed;
+  background: #f1eaff;
+}
+
+.ideatech-presentacion-funcion-icono.naranja {
+  color: #d97706;
+  background: #fff7df;
+}
+
+.ideatech-presentacion-funcion-icono.verde {
+  color: #16a34a;
+  background: #eafbef;
+}
+
+.ideatech-presentacion-funcion-icono.rojo {
+  color: #dc2626;
+  background: #feecec;
+}
+
+.ideatech-presentacion-funciones h3 {
+  margin: 0 0 9px;
+  color: #1a304d;
+  font-size: 16px;
+}
+
+.ideatech-presentacion-funciones p {
+  margin: 0;
+  color: #74859a;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.ideatech-presentacion-seguridad {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 27px;
+  margin: 0 clamp(24px, 7vw, 110px) 85px;
+  padding: 37px;
+  border: 1px solid #dce7f2;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 40, 73, 0.07);
+}
+
+.ideatech-presentacion-seguridad-icono {
+  width: 75px;
+  height: 75px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  color: #2563eb;
+  background: #eaf2ff;
+}
+
+.ideatech-presentacion-seguridad h2 {
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.ideatech-presentacion-seguridad-boton {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  border-radius: 12px;
+  color: #ffffff;
+  background: #173c70;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ideatech-presentacion-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 30px clamp(24px, 7vw, 110px);
+  color: #9bb0cc;
+  background: #071a38;
+}
+
+.ideatech-presentacion-footer
+  .ideatech-presentacion-marca strong {
+  color: #ffffff;
+}
+
+.ideatech-presentacion-footer p {
+  margin: 0;
+  font-size: 12px;
+  text-align: right;
+}
+
+.ideatech-presentacion-carga {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  color: #173354;
+  background: #f3f6fb;
+}
+
+.ideatech-presentacion-carga svg {
+  color: #2563eb;
+}
+
+.ideatech-presentacion-carga p {
+  margin: 0;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .ideatech-presentacion-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ideatech-presentacion-hero-contenido {
+    max-width: 760px;
+  }
+
+  .ideatech-presentacion-visual {
+    width: min(620px, 94%);
+    margin: 10px auto 25px;
+  }
+
+  .ideatech-presentacion-funciones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ideatech-presentacion-seguridad {
+    grid-template-columns: auto 1fr;
+  }
+
+  .ideatech-presentacion-seguridad-boton {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .ideatech-presentacion-header {
+    min-height: 70px;
+    padding: 12px 18px;
+  }
+
+  .ideatech-presentacion-marca small,
+  .ideatech-presentacion-navegacion > a:not(
+      .ideatech-presentacion-ingresar
+    ) {
+    display: none;
+  }
+
+  .ideatech-presentacion-navegacion {
+    gap: 0;
+  }
+
+  .ideatech-presentacion-hero {
+    min-height: calc(100vh - 70px);
+    padding: 60px 22px 75px;
+  }
+
+  .ideatech-presentacion-hero h1 {
+    font-size: clamp(39px, 12vw, 58px);
+    letter-spacing: -2px;
+  }
+
+  .ideatech-presentacion-visual {
+    width: 100%;
+  }
+
+  .ideatech-presentacion-panel {
+    transform: none;
+  }
+
+  .ideatech-presentacion-tarjeta-flotante {
+    right: 12px;
+    bottom: -27px;
+  }
+
+  .ideatech-presentacion-seccion {
+    padding: 70px 20px;
+  }
+
+  .ideatech-presentacion-funciones {
+    grid-template-columns: 1fr;
+  }
+
+  .ideatech-presentacion-seguridad {
+    grid-template-columns: 1fr;
+    margin: 0 20px 65px;
+    padding: 27px 23px;
+  }
+
+  .ideatech-presentacion-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 20px;
+  }
+
+  .ideatech-presentacion-footer p {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .ideatech-presentacion-navegacion
+    .ideatech-presentacion-ingresar {
+    min-height: 40px;
+    padding: 0 13px;
+    font-size: 12px;
+  }
+
+  .ideatech-presentacion-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ideatech-presentacion-acciones {
+    flex-direction: column;
+  }
+
+  .ideatech-presentacion-boton-principal,
+  .ideatech-presentacion-boton-secundario {
+    width: 100%;
+  }
+
+  .ideatech-presentacion-indicadores {
+    grid-template-columns: 1fr;
+  }
+
+  .ideatech-presentacion-indicadores article {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ideatech-presentacion-indicadores article > span {
+    margin-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ideatech-presentacion-boton-principal,
+  .ideatech-presentacion-boton-secundario,
+  .ideatech-presentacion-funciones article {
+    transition: none;
+  }
+}

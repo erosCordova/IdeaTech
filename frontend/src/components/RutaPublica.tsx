@@ -1,12 +1,19 @@
 import { UserPlus } from "lucide-react";
-import { Link, Navigate } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+} from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 import Login from "../pages/Login";
+
 import "../styles/Registro.css";
 
 export default function RutaPublica() {
-  const { cargando, estaAutenticado } = useAuth();
+  const {
+    cargando,
+    estaAutenticado,
+  } = useAuth();
 
   if (cargando) {
     return null;

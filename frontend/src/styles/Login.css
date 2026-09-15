@@ -1,52 +1,103 @@
 .ideatech-login {
+  position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-columns:
-    minmax(420px, 1.1fr)
-    minmax(420px, 0.9fr);
-  background: #f4f7fb;
-}
-
-.ideatech-login-presentacion {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 42px 56px;
-  color: #ffffff;
+  place-items: center;
+  overflow: hidden;
+  padding: 90px 24px 45px;
   background:
     radial-gradient(
-      circle at 85% 15%,
-      rgba(59, 130, 246, 0.35),
-      transparent 32%
+      circle at 12% 15%,
+      rgba(56, 189, 248, 0.16),
+      transparent 27%
     ),
     radial-gradient(
-      circle at 15% 85%,
-      rgba(14, 165, 233, 0.2),
-      transparent 30%
+      circle at 88% 85%,
+      rgba(37, 99, 235, 0.13),
+      transparent 29%
     ),
     linear-gradient(
       145deg,
-      #081b3a,
-      #0c2c5a 58%,
-      #123d78
+      #eef5fd,
+      #f8fafc 52%,
+      #edf4fc
     );
   box-sizing: border-box;
 }
 
-.ideatech-marca {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.ideatech-login::before,
+.ideatech-login::after {
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.ideatech-marca-icono {
-  width: 54px;
-  height: 54px;
-  flex-shrink: 0;
+.ideatech-login::before {
+  top: -130px;
+  right: -100px;
+  width: 340px;
+  height: 340px;
+  border: 55px solid rgba(37, 99, 235, 0.055);
+}
+
+.ideatech-login::after {
+  bottom: -160px;
+  left: -130px;
+  width: 390px;
+  height: 390px;
+  border: 65px solid rgba(14, 165, 233, 0.05);
+}
+
+.ideatech-login * {
+  box-sizing: border-box;
+}
+
+.ideatech-login-volver-presentacion {
+  position: absolute;
+  top: 25px;
+  left: clamp(20px, 4vw, 55px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border-radius: 10px;
+  color: #526a87;
+  background: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 750;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ideatech-login-volver-presentacion:hover {
+  color: #1d4ed8;
+  background: #ffffff;
+}
+
+.ideatech-login-contenido {
+  position: relative;
+  z-index: 1;
+  width: min(445px, 100%);
+}
+
+.ideatech-login-marca {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.ideatech-login-marca-icono {
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 14px;
   color: #ffffff;
   background: linear-gradient(
     135deg,
@@ -54,118 +105,36 @@
     #2563eb
   );
   box-shadow:
-    0 14px 34px rgba(37, 99, 235, 0.35);
+    0 12px 28px rgba(37, 99, 235, 0.27);
 }
 
-.ideatech-marca div:last-child {
+.ideatech-login-marca > div:last-child {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
-.ideatech-marca strong {
-  font-size: 24px;
-  letter-spacing: -0.5px;
+.ideatech-login-marca strong {
+  color: #102846;
+  font-size: 21px;
 }
 
-.ideatech-marca span {
-  color: #b8cbed;
-  font-size: 13px;
-  letter-spacing: 0.8px;
+.ideatech-login-marca span {
+  margin-top: 1px;
+  color: #758aa5;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.9px;
   text-transform: uppercase;
-}
-
-.ideatech-presentacion-contenido {
-  width: min(610px, 100%);
-}
-
-.ideatech-presentacion-etiqueta {
-  margin: 0 0 15px;
-  color: #7dd3fc;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.ideatech-presentacion-contenido h1 {
-  max-width: 600px;
-  margin: 0;
-  font-size: clamp(38px, 5vw, 64px);
-  line-height: 1.05;
-  letter-spacing: -2.3px;
-}
-
-.ideatech-presentacion-texto {
-  max-width: 570px;
-  margin: 25px 0 34px;
-  color: #c8d8ef;
-  font-size: 17px;
-  line-height: 1.75;
-}
-
-.ideatech-tecnologias {
-  display: grid;
-  gap: 12px;
-}
-
-.ideatech-tecnologias article {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 15px 18px;
-  border:
-    1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 15px;
-  background:
-    rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(10px);
-}
-
-.ideatech-tecnologias article > svg {
-  flex-shrink: 0;
-  color: #7dd3fc;
-}
-
-.ideatech-tecnologias article div {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.ideatech-tecnologias strong {
-  font-size: 15px;
-}
-
-.ideatech-tecnologias span {
-  color: #b8cbed;
-  font-size: 13px;
-}
-
-.ideatech-presentacion-pie {
-  margin: 0;
-  color: #93acd0;
-  font-size: 13px;
-}
-
-.ideatech-login-formulario-contenedor {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 42px;
-  box-sizing: border-box;
 }
 
 .ideatech-login-formulario {
-  width: min(430px, 100%);
-  padding: 42px;
-  border: 1px solid #e3eaf3;
-  border-radius: 24px;
-  background: #ffffff;
+  width: 100%;
+  padding: 40px;
+  border: 1px solid #dde7f2;
+  border-radius: 23px;
+  background: rgba(255, 255, 255, 0.97);
   box-shadow:
-    0 24px 65px rgba(19, 42, 76, 0.12);
-  box-sizing: border-box;
+    0 25px 65px rgba(19, 42, 76, 0.13);
 }
 
 .ideatech-formulario-icono {
@@ -184,21 +153,22 @@
 }
 
 .ideatech-formulario-encabezado {
-  margin-bottom: 30px;
+  margin-bottom: 29px;
 }
 
 .ideatech-formulario-encabezado p {
   margin: 0 0 7px;
   color: #2563eb;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-.ideatech-formulario-encabezado h2 {
+.ideatech-formulario-encabezado h1 {
   margin: 0 0 9px;
   color: #10233f;
-  font-size: 31px;
+  font-size: 30px;
   letter-spacing: -0.8px;
 }
 
@@ -230,7 +200,6 @@
   border: 1px solid #dbe4ef;
   border-radius: 13px;
   background: #f8fafc;
-  box-sizing: border-box;
   transition:
     border-color 0.2s ease,
     background 0.2s ease,
@@ -281,9 +250,6 @@
   color: #7890ad;
   background: transparent;
   cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background 0.2s ease;
 }
 
 .ideatech-ver-contrasena:hover {
@@ -340,8 +306,7 @@
   background: #f0fdf4;
 }
 
-.ideatech-login-boton,
-.ideatech-boton-cerrar {
+.ideatech-login-boton {
   width: 100%;
   min-height: 52px;
   display: flex;
@@ -368,15 +333,13 @@
     opacity 0.2s ease;
 }
 
-.ideatech-login-boton:hover:not(:disabled),
-.ideatech-boton-cerrar:hover:not(:disabled) {
+.ideatech-login-boton:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow:
     0 16px 30px rgba(37, 99, 235, 0.3);
 }
 
-.ideatech-login-boton:disabled,
-.ideatech-boton-cerrar:disabled {
+.ideatech-login-boton:disabled {
   cursor: not-allowed;
   opacity: 0.65;
 }
@@ -393,13 +356,9 @@
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
 }
 
-.ideatech-volver-login:hover {
+.ideatech-volver-login:hover:not(:disabled) {
   border-color: #bfcee0;
   color: #1d4ed8;
   background: #f8fafc;
@@ -426,85 +385,6 @@
   color: #16a34a;
 }
 
-.ideatech-login-carga,
-.ideatech-sesion-activa {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 30px;
-  color: #18314f;
-  background: #f3f7fc;
-  box-sizing: border-box;
-}
-
-.ideatech-login-carga {
-  align-content: center;
-  gap: 12px;
-}
-
-.ideatech-login-carga svg {
-  color: #2563eb;
-}
-
-.ideatech-login-carga p {
-  margin: 0;
-  font-weight: 700;
-}
-
-.ideatech-sesion-tarjeta {
-  width: min(470px, 100%);
-  padding: 45px;
-  border: 1px solid #e1e9f3;
-  border-radius: 24px;
-  background: #ffffff;
-  box-shadow:
-    0 25px 60px rgba(15, 39, 72, 0.13);
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.ideatech-sesion-icono {
-  width: 76px;
-  height: 76px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  color: #15803d;
-  background: #dcfce7;
-}
-
-.ideatech-sesion-etiqueta {
-  margin: 0 0 8px;
-  color: #15803d;
-  font-size: 13px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.ideatech-sesion-tarjeta h1 {
-  margin: 0;
-  color: #10233f;
-  font-size: 29px;
-}
-
-.ideatech-sesion-datos {
-  margin: 25px 0;
-  padding: 18px;
-  border-radius: 14px;
-  color: #53677f;
-  background: #f6f9fc;
-  text-align: left;
-}
-
-.ideatech-sesion-datos p {
-  margin: 8px 0;
-}
-
-.ideatech-sesion-datos strong {
-  color: #213955;
-}
-
 .girando {
   animation:
     ideatech-girar 0.8s linear infinite;
@@ -516,29 +396,33 @@
   }
 }
 
-@media (max-width: 900px) {
-  .ideatech-login {
-    grid-template-columns: 1fr;
-  }
-
-  .ideatech-login-presentacion {
-    display: none;
-  }
-
-  .ideatech-login-formulario-contenedor {
-    padding: 24px;
-  }
-}
-
 @media (max-width: 520px) {
-  .ideatech-login-formulario-contenedor {
-    padding: 0;
+  .ideatech-login {
+    padding: 75px 0 0;
     background: #ffffff;
   }
 
-  .ideatech-login-formulario {
+  .ideatech-login::before,
+  .ideatech-login::after {
+    display: none;
+  }
+
+  .ideatech-login-volver-presentacion {
+    top: 17px;
+    left: 14px;
+    background: #f3f7fc;
+  }
+
+  .ideatech-login-contenido {
     width: 100%;
-    min-height: 100vh;
+  }
+
+  .ideatech-login-marca {
+    margin-bottom: 17px;
+  }
+
+  .ideatech-login-formulario {
+    min-height: calc(100vh - 140px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -548,24 +432,15 @@
     box-shadow: none;
   }
 
-  .ideatech-formulario-encabezado h2 {
+  .ideatech-formulario-encabezado h1 {
     font-size: 27px;
-  }
-
-  .ideatech-sesion-activa {
-    padding: 15px;
-  }
-
-  .ideatech-sesion-tarjeta {
-    padding: 32px 22px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ideatech-login-volver-presentacion,
   .ideatech-login-input,
-  .ideatech-login-boton,
-  .ideatech-boton-cerrar,
-  .ideatech-volver-login {
+  .ideatech-login-boton {
     transition: none;
   }
 }

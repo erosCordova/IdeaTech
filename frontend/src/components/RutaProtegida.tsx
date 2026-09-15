@@ -31,7 +31,12 @@ export default function RutaProtegida({
   }
 
   if (!estaAutenticado) {
-    return <Navigate to="/login" replace />;
+    return (
+      <Navigate
+        to="/presentacion"
+        replace
+      />
+    );
   }
 
   if (!perfil) {
@@ -40,8 +45,9 @@ export default function RutaProtegida({
         <h1>Perfil no disponible</h1>
 
         <p>
-          No se pudo cargar la información de tu cuenta.
-          Recarga la página o comunícate con el administrador.
+          No se pudo cargar la información de tu
+          cuenta. Recarga la página o comunícate
+          con el administrador.
         </p>
       </main>
     );
@@ -53,7 +59,8 @@ export default function RutaProtegida({
         <h1>Cuenta inactiva</h1>
 
         <p>
-          Comunícate con el administrador del sistema.
+          Comunícate con el administrador del
+          sistema.
         </p>
       </main>
     );

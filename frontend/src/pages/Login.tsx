@@ -1,4 +1,5 @@
 import {
+  ArrowLeft,
   BrainCircuit,
   Eye,
   EyeOff,
@@ -6,18 +7,16 @@ import {
   LoaderCircle,
   LockKeyhole,
   LogIn,
-  LogOut,
   Mail,
-  MessageSquareText,
   ShieldCheck,
-  TrendingUp,
-  Users,
 } from "lucide-react";
 
 import {
   useState,
   type FormEvent,
 } from "react";
+
+import { Link } from "react-router-dom";
 
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
@@ -60,13 +59,7 @@ function obtenerMensajeRecuperacion(
 }
 
 export default function Login() {
-  const {
-    usuario,
-    perfil,
-    cargando,
-    iniciarSesion,
-    cerrarSesion,
-  } = useAuth();
+  const { iniciarSesion } = useAuth();
 
   const [correo, setCorreo] =
     useState("");
@@ -206,104 +199,20 @@ export default function Login() {
     setMensajeExito("");
   };
 
-  const manejarCierreSesion =
-    async () => {
-      setEnviando(true);
-      setMensajeError("");
-
-      const { error } =
-        await cerrarSesion();
-
-      if (error) {
-        setMensajeError(
-          "No se pudo cerrar la sesión. Inténtalo nuevamente.",
-        );
-      }
-
-      setEnviando(false);
-    };
-
-  if (cargando) {
-    return (
-      <main className="ideatech-login-carga">
-        <LoaderCircle
-          size={42}
-          className="girando"
-        />
-
-        <p>Verificando sesión...</p>
-      </main>
-    );
-  }
-
-  if (usuario) {
-    return (
-      <main className="ideatech-sesion-activa">
-        <section className="ideatech-sesion-tarjeta">
-          <div className="ideatech-sesion-icono">
-            <ShieldCheck size={44} />
-          </div>
-
-          <p className="ideatech-sesion-etiqueta">
-            Sesión iniciada correctamente
-          </p>
-
-          <h1>
-            {perfil?.nombre_completo ||
-              "Usuario de IdeaTech"}
-          </h1>
-
-          <div className="ideatech-sesion-datos">
-            <p>
-              <strong>Correo:</strong>{" "}
-              {usuario.email}
-            </p>
-
-            <p>
-              <strong>Rol:</strong>{" "}
-              {perfil?.rol ||
-                "Cargando perfil"}
-            </p>
-
-            <p>
-              <strong>Estado:</strong>{" "}
-              {perfil?.activo
-                ? "Activo"
-                : "Inactivo"}
-            </p>
-          </div>
-
-          {mensajeError && (
-            <div className="ideatech-login-error">
-              {mensajeError}
-            </div>
-          )}
-
-          <button
-            type="button"
-            className="ideatech-boton-cerrar"
-            onClick={() =>
-              void manejarCierreSesion()
-            }
-            disabled={enviando}
-          >
-            <LogOut size={19} />
-
-            {enviando
-              ? "Cerrando..."
-              : "Cerrar sesión"}
-          </button>
-        </section>
-      </main>
-    );
-  }
-
   return (
     <main className="ideatech-login">
-      <section className="ideatech-login-presentacion">
-        <div className="ideatech-marca">
-          <div className="ideatech-marca-icono">
-            <BrainCircuit size={34} />
+      <Link
+        to="/presentacion"
+        className="ideatech-login-volver-presentacion"
+      >
+        <ArrowLeft size={18} />
+        Volver a la presentación
+      </Link>
+
+      <section className="ideatech-login-contenido">
+        <div className="ideatech-login-marca">
+          <div className="ideatech-login-marca-icono">
+            <BrainCircuit size={30} />
           </div>
 
           <div>
@@ -312,75 +221,6 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="ideatech-presentacion-contenido">
-          <p className="ideatech-presentacion-etiqueta">
-            Plataforma empresarial
-          </p>
-
-          <h1>
-            Convierte la información en
-            decisiones inteligentes
-          </h1>
-
-          <p className="ideatech-presentacion-texto">
-            Gestiona clientes, analiza
-            comentarios y anticipa posibles
-            cancelaciones desde una plataforma
-            segura.
-          </p>
-
-          <div className="ideatech-tecnologias">
-            <article>
-              <Users size={24} />
-
-              <div>
-                <strong>
-                  Gestión empresarial
-                </strong>
-
-                <span>
-                  Clientes, empresas y usuarios
-                </span>
-              </div>
-            </article>
-
-            <article>
-              <MessageSquareText size={24} />
-
-              <div>
-                <strong>
-                  Atención centralizada
-                </strong>
-
-                <span>
-                  Comentarios y soporte
-                </span>
-              </div>
-            </article>
-
-            <article>
-              <TrendingUp size={24} />
-
-              <div>
-                <strong>
-                  Análisis inteligente
-                </strong>
-
-                <span>
-                  Indicadores y predicciones
-                </span>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <p className="ideatech-presentacion-pie">
-          Sistema empresarial para la gestión
-          y predicción de clientes
-        </p>
-      </section>
-
-      <section className="ideatech-login-formulario-contenedor">
         {vistaFormulario === "login" ? (
           <form
             className="ideatech-login-formulario"
@@ -392,7 +232,8 @@ export default function Login() {
 
             <div className="ideatech-formulario-encabezado">
               <p>Bienvenido nuevamente</p>
-              <h2>Iniciar sesión</h2>
+
+              <h1>Iniciar sesión</h1>
 
               <span>
                 Ingresa tus credenciales para
@@ -424,6 +265,7 @@ export default function Login() {
                   autoComplete="email"
                   disabled={enviando}
                   required
+                  autoFocus
                 />
               </div>
             </label>
@@ -470,6 +312,7 @@ export default function Login() {
                       ? "Ocultar contraseña"
                       : "Mostrar contraseña"
                   }
+                  disabled={enviando}
                 >
                   {mostrarContrasena ? (
                     <EyeOff size={19} />
@@ -536,9 +379,10 @@ export default function Login() {
 
             <div className="ideatech-formulario-encabezado">
               <p>Recuperar acceso</p>
-              <h2>
+
+              <h1>
                 Restablecer contraseña
-              </h2>
+              </h1>
 
               <span>
                 Ingresa el correo de tu cuenta.
