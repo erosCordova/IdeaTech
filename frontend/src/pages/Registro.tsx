@@ -26,6 +26,7 @@ import "../styles/Registro.css";
 
 interface FormularioRegistro {
   nombreCompleto: string;
+  dni: string;
   correo: string;
   telefono: string;
   empresa: string;
@@ -38,6 +39,7 @@ interface FormularioRegistro {
 
 const formularioInicial: FormularioRegistro = {
   nombreCompleto: "",
+  dni: "",
   correo: "",
   telefono: "",
   empresa: "",
@@ -79,6 +81,14 @@ export default function Registro() {
     }));
   };
 
+  const cambiarDni = (valor: string) => {
+    const soloNumeros = valor
+      .replace(/\D/g, "")
+      .slice(0, 8);
+
+    cambiarCampo("dni", soloNumeros);
+  };
+
   const cambiarRuc = (valor: string) => {
     const soloNumeros = valor
       .replace(/\D/g, "")
@@ -106,6 +116,7 @@ export default function Registro() {
 
     if (
       !formulario.nombreCompleto.trim() ||
+      !formulario.dni.trim() ||
       !formulario.correo.trim() ||
       !formulario.empresa.trim() ||
       !formulario.ruc.trim() ||
@@ -114,6 +125,13 @@ export default function Registro() {
     ) {
       setError(
         "Completa todos los campos obligatorios.",
+      );
+      return;
+    }
+
+    if (!/^\d{8}$/.test(formulario.dni)) {
+      setError(
+        "El DNI debe contener exactamente 8 números.",
       );
       return;
     }
@@ -154,6 +172,7 @@ export default function Registro() {
           data: {
             nombre_completo:
               formulario.nombreCompleto.trim(),
+            dni: formulario.dni.trim(),
             telefono:
               formulario.telefono.trim(),
             empresa:
@@ -318,6 +337,32 @@ export default function Registro() {
                   }
                   placeholder="Nombres y apellidos"
                   autoComplete="name"
+                  required
+                />
+              </div>
+            </label>
+
+            <label>
+              <span>DNI *</span>
+
+              <div className="registro-input">
+                <Hash size={18} />
+
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={formulario.dni}
+                  onChange={(evento) =>
+                    cambiarDni(
+                      evento.target.value,
+                    )
+                  }
+                  placeholder="8 números"
+                  autoComplete="off"
+                  minLength={8}
+                  maxLength={8}
+                  pattern="[0-9]{8}"
+                  title="Ingresa los 8 números del DNI"
                   required
                 />
               </div>

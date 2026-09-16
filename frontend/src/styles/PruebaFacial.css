@@ -1,0 +1,670 @@
+/* =========================================================
+   PRUEBA FACIAL - IDEATECH
+========================================================= */
+
+.prueba-facial-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.prueba-facial-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.prueba-facial-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.prueba-facial-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 750;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.prueba-facial-header p {
+  max-width: 680px;
+  margin: 9px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.prueba-facial-header-icon {
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+/* =========================================================
+   ALERTAS
+========================================================= */
+
+.prueba-facial-alerta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.prueba-facial-alerta.error {
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+/* =========================================================
+   GRID PRINCIPAL
+========================================================= */
+
+.prueba-facial-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(480px, 1.15fr)
+    minmax(340px, 0.85fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.prueba-facial-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 8px 24px rgba(15, 23, 42, 0.035);
+}
+
+.prueba-facial-card.resultado {
+  min-height: 420px;
+}
+
+/* =========================================================
+   CABECERA DE TARJETAS
+========================================================= */
+
+.prueba-facial-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.prueba-facial-card-header > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+
+.prueba-facial-card-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.prueba-facial-card-header h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.prueba-facial-card-header p {
+  margin: 3px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+/* =========================================================
+   ESTADO DE CÁMARA
+========================================================= */
+
+.prueba-facial-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 5px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 650;
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+.prueba-facial-status > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.prueba-facial-status.activa {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.prueba-facial-status.activa > span {
+  background: #22c55e;
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+/* =========================================================
+   CÁMARA
+========================================================= */
+
+.prueba-facial-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #0f172a;
+}
+
+.prueba-facial-video video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.prueba-facial-video-vacio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  text-align: center;
+  color: #94a3b8;
+  background: #0f172a;
+}
+
+.prueba-facial-video-vacio strong {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #e2e8f0;
+}
+
+.prueba-facial-video-vacio span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* =========================================================
+   GUÍA FACIAL
+========================================================= */
+
+.prueba-facial-guia {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.prueba-facial-ovalo {
+  width: 35%;
+  height: 72%;
+  min-width: 145px;
+  max-width: 215px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 9999px rgba(15, 23, 42, 0.12),
+    0 0 20px rgba(255, 255, 255, 0.12);
+}
+
+/* =========================================================
+   LÍNEA DE ESCANEO
+========================================================= */
+
+.prueba-facial-scan {
+  position: absolute;
+  z-index: 3;
+  left: 34%;
+  right: 34%;
+  height: 2px;
+  border-radius: 20px;
+  pointer-events: none;
+  background: rgba(96, 165, 250, 0.95);
+  box-shadow:
+    0 0 8px rgba(59, 130, 246, 0.8),
+    0 0 16px rgba(59, 130, 246, 0.35);
+  animation:
+    pruebaFacialScan 2s ease-in-out infinite;
+}
+
+@keyframes pruebaFacialScan {
+  0% {
+    top: 24%;
+    opacity: 0.35;
+  }
+
+  50% {
+    top: 74%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 24%;
+    opacity: 0.35;
+  }
+}
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.prueba-facial-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.prueba-facial-boton {
+  min-height: 41px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 650;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    opacity 0.2s ease;
+}
+
+.prueba-facial-boton:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.prueba-facial-boton:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.prueba-facial-boton.principal {
+  border: 1px solid #2563eb;
+  color: #ffffff;
+  background: #2563eb;
+}
+
+.prueba-facial-boton.principal:hover:not(:disabled) {
+  border-color: #1d4ed8;
+  background: #1d4ed8;
+}
+
+.prueba-facial-boton.secundario {
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  background: #ffffff;
+}
+
+.prueba-facial-boton.secundario:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.prueba-facial-boton.detener {
+  border: 1px solid #dc2626;
+  color: #ffffff;
+  background: #dc2626;
+}
+
+.prueba-facial-boton.detener:hover {
+  border-color: #b91c1c;
+  background: #b91c1c;
+}
+
+/* =========================================================
+   PROCESAMIENTO
+========================================================= */
+
+.prueba-facial-estado-proceso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.prueba-facial-estado-proceso .indicador {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.prueba-facial-estado-proceso .indicador.activo {
+  background: #22c55e;
+  animation:
+    pruebaFacialPulso 1.2s ease-in-out infinite;
+}
+
+@keyframes pruebaFacialPulso {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* =========================================================
+   SIN RESULTADO
+========================================================= */
+
+.prueba-facial-sin-resultado {
+  min-height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.prueba-facial-sin-resultado svg {
+  margin-bottom: 15px;
+  color: #cbd5e1;
+}
+
+.prueba-facial-sin-resultado strong {
+  font-size: 15px;
+  color: #475569;
+}
+
+.prueba-facial-sin-resultado p {
+  max-width: 290px;
+  margin: 7px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   ESTADO DEL RESULTADO
+========================================================= */
+
+.prueba-facial-resultado-estado {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px;
+  border: 1px solid;
+  border-radius: 11px;
+}
+
+.prueba-facial-resultado-estado > svg {
+  flex-shrink: 0;
+}
+
+.prueba-facial-resultado-estado > div {
+  min-width: 0;
+}
+
+.prueba-facial-resultado-estado strong {
+  display: block;
+  font-size: 13px;
+}
+
+.prueba-facial-resultado-estado span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.prueba-facial-resultado-estado.reconocido {
+  border-color: #bbf7d0;
+  color: #15803d;
+  background: #f0fdf4;
+}
+
+.prueba-facial-resultado-estado.no-reconocido {
+  border-color: #e2e8f0;
+  color: #64748b;
+  background: #f8fafc;
+}
+
+/* =========================================================
+   COINCIDENCIA
+========================================================= */
+
+.prueba-facial-coincidencia {
+  margin-top: 20px;
+}
+
+.prueba-facial-coincidencia-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.prueba-facial-coincidencia-titulo span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.prueba-facial-coincidencia-titulo strong {
+  font-size: 15px;
+  font-weight: 750;
+  color: #0f172a;
+}
+
+.prueba-facial-barra {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.prueba-facial-barra-progreso {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #94a3b8;
+
+  /*
+   * Esto hace que la barra se mueva
+   * suavemente cuando llega cada nuevo
+   * resultado del backend.
+   */
+  transition:
+    width 0.35s ease,
+    background 0.25s ease;
+}
+
+.prueba-facial-barra-progreso.reconocido {
+  background: #22c55e;
+}
+
+.prueba-facial-coincidencia small {
+  display: block;
+  margin-top: 7px;
+  font-size: 9px;
+  line-height: 1.45;
+  color: #94a3b8;
+}
+
+/* =========================================================
+   DATOS DEL USUARIO RECONOCIDO
+========================================================= */
+
+.prueba-facial-datos {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.prueba-facial-datos > div {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.prueba-facial-datos span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.prueba-facial-datos strong {
+  display: block;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #1e293b;
+}
+
+/* =========================================================
+   NO RECONOCIDO
+========================================================= */
+
+.prueba-facial-no-identidad {
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 18px;
+  padding: 18px;
+  text-align: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  color: #94a3b8;
+  background: #f8fafc;
+}
+
+.prueba-facial-no-identidad p {
+  max-width: 310px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .prueba-facial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prueba-facial-card.resultado {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .prueba-facial-page {
+    padding: 18px;
+  }
+
+  .prueba-facial-header-icon {
+    display: none;
+  }
+
+  .prueba-facial-header h1 {
+    font-size: 25px;
+  }
+
+  .prueba-facial-card {
+    padding: 16px;
+  }
+
+  .prueba-facial-card-header {
+    flex-wrap: wrap;
+  }
+
+  .prueba-facial-status {
+    width: fit-content;
+    margin-left: 54px;
+  }
+
+  .prueba-facial-acciones {
+    flex-direction: column;
+  }
+
+  .prueba-facial-boton {
+    width: 100%;
+  }
+
+  .prueba-facial-datos {
+    grid-template-columns: 1fr;
+  }
+}

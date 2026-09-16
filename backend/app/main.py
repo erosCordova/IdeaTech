@@ -9,6 +9,9 @@ from app.routers.comentarios import (
 from app.routers.predicciones import (
     router as predicciones_router,
 )
+from app.routers.facial import (
+    router as facial_router,
+)
 
 
 configuracion = obtener_configuracion()
@@ -36,6 +39,7 @@ app.add_middleware(
 
 app.include_router(comentarios_router)
 app.include_router(predicciones_router)
+app.include_router(facial_router)
 
 
 @app.get("/", tags=["General"])

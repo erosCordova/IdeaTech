@@ -10,7 +10,9 @@ import {
   Home,
   LogOut,
   MessageSquareText,
+  ScanFace,
   ShieldCheck,
+  UserRoundCheck,
   Users,
   X,
 } from "lucide-react";
@@ -120,6 +122,24 @@ const enlaces: EnlaceMenu[] = [
     icono: ShieldCheck,
     roles: ["administrador"],
   },
+
+  /* =====================================================
+     RECONOCIMIENTO FACIAL
+  ===================================================== */
+
+  {
+    ruta: "/registro-facial",
+    nombre: "Registro Facial",
+    icono: ScanFace,
+    roles: ["administrador"],
+  },
+  {
+    ruta: "/prueba-facial",
+    nombre: "Prueba Facial",
+    icono: UserRoundCheck,
+    roles: ["administrador"],
+  },
+
   {
     ruta: "/auditoria",
     nombre: "Auditoría",

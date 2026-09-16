@@ -3,6 +3,7 @@ import {
   Check,
   CheckCircle2,
   Clock3,
+  Hash,
   Mail,
   Phone,
   RefreshCw,
@@ -165,6 +166,7 @@ export default function SolicitudesRegistro() {
 
       const contenido = [
         solicitud.nombre_completo,
+        solicitud.dni,
         solicitud.correo,
         solicitud.telefono,
         solicitud.empresa,
@@ -443,7 +445,7 @@ export default function SolicitudesRegistro() {
               onChange={(evento) =>
                 setBusqueda(evento.target.value)
               }
-              placeholder="Buscar por nombre, correo o empresa"
+              placeholder="Buscar por nombre, DNI, correo o empresa"
             />
           </label>
         </div>
@@ -511,6 +513,15 @@ export default function SolicitudesRegistro() {
                   </div>
 
                   <div className="solicitud-registro-datos">
+                    <div>
+                      <Hash size={18} />
+                      <span>
+                        <small>DNI</small>
+                        {solicitud.dni ||
+                          "No registrado"}
+                      </span>
+                    </div>
+
                     <div>
                       <Mail size={18} />
                       <span>

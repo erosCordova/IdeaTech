@@ -59,6 +59,14 @@ const Registro = lazy(
   () => import("./pages/Registro"),
 );
 
+const RegistroFacial = lazy(
+  () => import("./pages/RegistroFacial"),
+);
+
+const PruebaFacial = lazy(
+  () => import("./pages/PruebaFacial"),
+);
+
 const Reportes = lazy(
   () => import("./pages/Reportes"),
 );
@@ -252,6 +260,36 @@ export default function App() {
                   ]}
                 >
                   <Usuarios />
+                </RutaPorRol>
+              }
+            />
+
+            {/* =========================================
+                RECONOCIMIENTO FACIAL
+            ========================================= */}
+
+            <Route
+              path="registro-facial"
+              element={
+                <RutaPorRol
+                  rolesPermitidos={[
+                    "administrador",
+                  ]}
+                >
+                  <RegistroFacial />
+                </RutaPorRol>
+              }
+            />
+
+            <Route
+              path="prueba-facial"
+              element={
+                <RutaPorRol
+                  rolesPermitidos={[
+                    "administrador",
+                  ]}
+                >
+                  <PruebaFacial />
                 </RutaPorRol>
               }
             />

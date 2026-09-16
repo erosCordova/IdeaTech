@@ -68,6 +68,7 @@ export interface Perfil {
   id: string;
   correo: string | null;
   nombre_completo: string;
+  dni: string | null;
   telefono: string | null;
   empresa: string | null;
   ruc: string | null;

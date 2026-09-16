@@ -8,6 +8,7 @@ import type {
 export interface UsuarioAdministrable {
   id: string;
   nombre_completo: string;
+  dni: string | null;
   correo: string;
   telefono: string | null;
   empresa: string | null;
@@ -34,32 +35,47 @@ function normalizarUsuario(
 ): UsuarioAdministrable {
   return {
     id: String(usuario.id ?? ""),
+
     nombre_completo: String(
       usuario.nombre_completo ?? ""
     ),
+
+    dni:
+      typeof usuario.dni === "string"
+        ? usuario.dni
+        : null,
+
     correo: String(usuario.correo ?? ""),
+
     telefono:
       typeof usuario.telefono === "string"
         ? usuario.telefono
         : null,
+
     empresa:
       typeof usuario.empresa === "string"
         ? usuario.empresa
         : null,
+
     cargo:
       typeof usuario.cargo === "string"
         ? usuario.cargo
         : null,
+
     rol: String(
       usuario.rol ?? "cliente"
     ) as UsuarioAdministrable["rol"],
+
     activo: Boolean(usuario.activo),
+
     estado_solicitud: String(
       usuario.estado_solicitud ?? "pendiente"
     ) as EstadoSolicitudRegistro,
+
     fecha_registro: String(
       usuario.fecha_registro ?? ""
     ),
+
     fecha_actualizacion: String(
       usuario.fecha_actualizacion ?? ""
     ),
@@ -75,6 +91,7 @@ export async function listarUsuarios(): Promise<
       `
         id,
         nombre_completo,
+        dni,
         correo,
         telefono,
         empresa,
@@ -112,6 +129,7 @@ export async function obtenerUsuario(
       `
         id,
         nombre_completo,
+        dni,
         correo,
         telefono,
         empresa,
@@ -203,7 +221,8 @@ export function calcularResumenUsuarios(
     ).length,
 
     clientes: usuariosAprobados.filter(
-      (usuario) => usuario.rol === "cliente"
+      (usuario) =>
+        usuario.rol === "cliente"
     ).length,
   };
 }

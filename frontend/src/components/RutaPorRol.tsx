@@ -51,15 +51,24 @@ export default function RutaPorRol({
     );
   }
 
-  if (!perfil?.activo) {
+  if (!perfil) {
     return (
-      <main className="ruta-cargando">
-        <h1>Cuenta inactiva</h1>
+      <Navigate
+        to="/"
+        replace
+      />
+    );
+  }
 
-        <p>
-          Comunícate con el administrador del sistema.
-        </p>
-      </main>
+  if (
+    !perfil.activo ||
+    perfil.estado_solicitud !== "aprobado"
+  ) {
+    return (
+      <Navigate
+        to="/"
+        replace
+      />
     );
   }
 

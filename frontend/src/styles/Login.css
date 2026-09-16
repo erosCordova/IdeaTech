@@ -385,6 +385,220 @@
   color: #16a34a;
 }
 
+/* =========================================================
+   ACCESO FACIAL DESDE LOGIN
+========================================================= */
+
+.ideatech-login-alternativa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 22px;
+}
+
+.ideatech-login-alternativa > span {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8a9bb0;
+  font-size: 11px;
+  text-align: center;
+}
+
+.ideatech-login-alternativa > span::before,
+.ideatech-login-alternativa > span::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e2e8f0;
+}
+
+.ideatech-login-facial-boton {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  margin-top: 15px;
+  padding: 0;
+  border: 1px solid #d8e4f2;
+  border-radius: 15px;
+  color: #2563eb;
+  background: #f5f9ff;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ideatech-login-facial-boton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #93c5fd;
+  background: #eff6ff;
+  box-shadow:
+    0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+.ideatech-login-facial-boton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ideatech-login-alternativa small {
+  margin-top: 7px;
+  color: #718399;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+/* =========================================================
+   MODAL DE RECONOCIMIENTO FACIAL
+========================================================= */
+
+.ideatech-facial-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(15, 30, 52, 0.58);
+  backdrop-filter: blur(7px);
+}
+
+.ideatech-facial-modal-contenido {
+  position: relative;
+  width: min(420px, 100%);
+  padding: 30px;
+  border: 1px solid #dbe7f4;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow:
+    0 30px 80px rgba(15, 35, 65, 0.3);
+}
+
+.ideatech-facial-cerrar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  color: #718399;
+  background: #f3f6fa;
+  cursor: pointer;
+}
+
+.ideatech-facial-cerrar:hover {
+  color: #1d4ed8;
+  background: #eaf2ff;
+}
+
+.ideatech-facial-modal-icono {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 17px;
+  border-radius: 15px;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    #1d4ed8,
+    #0284c7
+  );
+}
+
+.ideatech-facial-modal-contenido h2 {
+  margin: 0 0 7px;
+  color: #10233f;
+  font-size: 23px;
+}
+
+.ideatech-facial-modal-contenido > p {
+  margin: 0 0 20px;
+  color: #6b7d95;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ideatech-facial-camara {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 17px;
+  background: #0f172a;
+}
+
+.ideatech-facial-camara video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.ideatech-facial-guia {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 47%;
+  height: 68%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 48%;
+  pointer-events: none;
+}
+
+.ideatech-facial-linea {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: rgba(56, 189, 248, 0.9);
+  box-shadow:
+    0 0 12px rgba(56, 189, 248, 0.8);
+  animation:
+    ideatech-escanear-rostro 2.2s ease-in-out infinite;
+}
+
+.ideatech-facial-cargando {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.ideatech-facial-canvas {
+  display: none;
+}
+
+.ideatech-facial-mensaje {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  color: #536b88;
+  background: #f5f8fc;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: center;
+}
+
 .girando {
   animation:
     ideatech-girar 0.8s linear infinite;
@@ -395,6 +609,21 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes ideatech-escanear-rostro {
+  0%,
+  100% {
+    top: 15%;
+  }
+
+  50% {
+    top: 83%;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 520px) {
   .ideatech-login {
@@ -435,12 +664,27 @@
   .ideatech-formulario-encabezado h1 {
     font-size: 27px;
   }
+
+  .ideatech-facial-modal {
+    padding: 12px;
+  }
+
+  .ideatech-facial-modal-contenido {
+    padding: 24px 18px 20px;
+    border-radius: 18px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ideatech-login-volver-presentacion,
   .ideatech-login-input,
-  .ideatech-login-boton {
+  .ideatech-login-boton,
+  .ideatech-login-facial-boton {
     transition: none;
+  }
+
+  .ideatech-facial-linea {
+    animation: none;
+    top: 50%;
   }
 }

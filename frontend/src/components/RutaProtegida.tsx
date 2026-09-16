@@ -53,14 +53,18 @@ export default function RutaProtegida({
     );
   }
 
-  if (!perfil.activo) {
+  if (
+    !perfil.activo ||
+    perfil.estado_solicitud !== "aprobado"
+  ) {
     return (
       <main className="ruta-cargando">
-        <h1>Cuenta inactiva</h1>
+        <h1>Cuenta no habilitada</h1>
 
         <p>
-          Comunícate con el administrador del
-          sistema.
+          Tu cuenta todavía no está habilitada
+          para acceder al sistema. Comunícate con
+          el administrador.
         </p>
       </main>
     );
