@@ -25,6 +25,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+import { FaceDetector, FilesetResolver } from "@mediapipe/tasks-vision";
+
 import { useAuth } from "../contexts/AuthContext";
 import { supabase } from "../lib/supabase";
 import {
@@ -149,7 +151,138 @@ export default function Login() {
   const streamRef =
     useRef<MediaStream | null>(null);
 
+  const detectorFacialRef =
+    useRef<FaceDetector | null>(null);
+
+  const animacionMediaPipeRef =
+    useRef<number | null>(null);
+
+  const ultimoTiempoVideoRef =
+    useRef(-1);
+
+  const [mediaPipeListo, setMediaPipeListo] =
+    useState(false);
+
+  const [rostroValidoMediaPipe, setRostroValidoMediaPipe] =
+    useState(false);
+
+  const [cantidadRostrosMediaPipe, setCantidadRostrosMediaPipe] =
+    useState(0);
+
+  const modoCamaraFacialRef =
+    useRef<ModoCamaraFacial>("login");
+
+  const verificandoRostroRef =
+    useRef(false);
+
+  const rostroEstableDesdeRef =
+    useRef<number | null>(null);
+
+  const ultimoIntentoAutomaticoRef =
+    useRef(0);
+
+  const verificarRostroRef =
+    useRef<((automatico?: boolean) => Promise<void>) | null>(null);
+
+  const detenerDeteccionMediaPipe = () => {
+    if (animacionMediaPipeRef.current !== null) {
+      cancelAnimationFrame(animacionMediaPipeRef.current);
+      animacionMediaPipeRef.current = null;
+    }
+
+    ultimoTiempoVideoRef.current = -1;
+    rostroEstableDesdeRef.current = null;
+    setRostroValidoMediaPipe(false);
+    setCantidadRostrosMediaPipe(0);
+  };
+
+  const iniciarDeteccionMediaPipe = () => {
+    detenerDeteccionMediaPipe();
+
+    const detectar = () => {
+      const detector = detectorFacialRef.current;
+      const video = videoRef.current;
+
+      if (
+        !detector ||
+        !video ||
+        !streamRef.current ||
+        video.readyState < 2
+      ) {
+        animacionMediaPipeRef.current =
+          requestAnimationFrame(detectar);
+        return;
+      }
+
+      try {
+        if (video.currentTime !== ultimoTiempoVideoRef.current) {
+          ultimoTiempoVideoRef.current = video.currentTime;
+
+          const resultado = detector.detectForVideo(
+            video,
+            performance.now(),
+          );
+
+          const cantidad = resultado.detections.length;
+          setCantidadRostrosMediaPipe(cantidad);
+          setRostroValidoMediaPipe(cantidad === 1);
+
+          if (cantidad === 0) {
+            rostroEstableDesdeRef.current = null;
+            setMensajeFacial(
+              "MediaPipe no detecta un rostro. Colócate frente a la cámara.",
+            );
+          } else if (cantidad > 1) {
+            rostroEstableDesdeRef.current = null;
+            setMensajeFacial(
+              "MediaPipe detectó más de un rostro. Debe aparecer una sola persona.",
+            );
+          } else if (modoCamaraFacialRef.current === "login") {
+            const ahora = performance.now();
+
+            if (rostroEstableDesdeRef.current === null) {
+              rostroEstableDesdeRef.current = ahora;
+            }
+
+            const rostroEstable =
+              ahora - rostroEstableDesdeRef.current >= 800;
+
+            const cooldownCumplido =
+              ahora - ultimoIntentoAutomaticoRef.current >= 1800;
+
+            if (verificandoRostroRef.current) {
+              setMensajeFacial("Verificando identidad...");
+            } else if (rostroEstable && cooldownCumplido) {
+              ultimoIntentoAutomaticoRef.current = ahora;
+              void verificarRostroRef.current?.(true);
+            } else {
+              setMensajeFacial(
+                "Rostro detectado. Mantente frente a la cámara...",
+              );
+            }
+          } else {
+            setMensajeFacial(
+              "Rostro detectado correctamente. Ya puedes registrarlo.",
+            );
+          }
+        }
+      } catch {
+        setRostroValidoMediaPipe(false);
+        setMensajeFacial(
+          "No se pudo analizar el rostro con MediaPipe.",
+        );
+      }
+
+      animacionMediaPipeRef.current =
+        requestAnimationFrame(detectar);
+    };
+
+    animacionMediaPipeRef.current =
+      requestAnimationFrame(detectar);
+  };
+
   const detenerCamara = () => {
+    detenerDeteccionMediaPipe();
     if (streamRef.current) {
       streamRef.current
         .getTracks()
@@ -185,6 +318,9 @@ export default function Login() {
     setMensajeError("");
     setMensajeExito("");
     setModoCamaraFacial(modo);
+    modoCamaraFacialRef.current = modo;
+    rostroEstableDesdeRef.current = null;
+    ultimoIntentoAutomaticoRef.current = 0;
     setMostrarCamaraFacial(true);
     setIniciandoCamara(true);
     setMensajeFacial(
@@ -214,9 +350,16 @@ export default function Login() {
         await videoRef.current.play();
       }
 
-      setMensajeFacial(
-        "Coloca tu rostro dentro de la guía.",
-      );
+      if (!detectorFacialRef.current) {
+        setMensajeFacial(
+          "MediaPipe todavía se está preparando...",
+        );
+      } else {
+        iniciarDeteccionMediaPipe();
+        setMensajeFacial(
+          "MediaPipe está buscando tu rostro...",
+        );
+      }
     } catch {
       detenerCamara();
 
@@ -282,8 +425,26 @@ export default function Login() {
     );
   };
 
-  const verificarRostro = async () => {
-    if (verificandoRostro) {
+  const verificarRostro = async (
+    automatico = false,
+  ) => {
+    if (verificandoRostroRef.current) {
+      return;
+    }
+
+    if (!mediaPipeListo || !detectorFacialRef.current) {
+      setMensajeFacial(
+        "MediaPipe todavía no está listo. Espera un momento.",
+      );
+      return;
+    }
+
+    if (!automatico && !rostroValidoMediaPipe) {
+      setMensajeFacial(
+        cantidadRostrosMediaPipe > 1
+          ? "Debe aparecer una sola persona frente a la cámara."
+          : "No se detecta un rostro correctamente. Colócate frente a la cámara.",
+      );
       return;
     }
 
@@ -296,6 +457,7 @@ export default function Login() {
       return;
     }
 
+    verificandoRostroRef.current = true;
     setVerificandoRostro(true);
 
     try {
@@ -368,13 +530,58 @@ export default function Login() {
 
       setMensajeFacial(mensaje);
     } finally {
+      verificandoRostroRef.current = false;
       setVerificandoRostro(false);
     }
   };
 
+  verificarRostroRef.current = verificarRostro;
+
   useEffect(() => {
+    let componenteActivo = true;
+
+    const prepararMediaPipe = async () => {
+      try {
+        const vision = await FilesetResolver.forVisionTasks(
+          "/mediapipe",
+        );
+
+        const detector = await FaceDetector.createFromOptions(
+          vision,
+          {
+            baseOptions: {
+              modelAssetPath:
+                "/models/blaze_face_short_range.tflite",
+            },
+            runningMode: "VIDEO",
+            minDetectionConfidence: 0.7,
+          },
+        );
+
+        if (!componenteActivo) {
+          detector.close();
+          return;
+        }
+
+        detectorFacialRef.current = detector;
+        setMediaPipeListo(true);
+      } catch {
+        if (componenteActivo) {
+          setMediaPipeListo(false);
+          setMensajeError(
+            "No se pudo inicializar MediaPipe. Recarga la página e inténtalo nuevamente.",
+          );
+        }
+      }
+    };
+
+    void prepararMediaPipe();
+
     return () => {
+      componenteActivo = false;
       detenerCamara();
+      detectorFacialRef.current?.close();
+      detectorFacialRef.current = null;
     };
   }, []);
 
@@ -935,33 +1142,43 @@ export default function Login() {
               {mensajeFacial}
             </div>
 
-            <button
-              type="button"
-              className="ideatech-login-boton"
-              onClick={verificarRostro}
-              disabled={
-                iniciandoCamara ||
-                verificandoRostro ||
-                !streamRef.current
-              }
-            >
-              {verificandoRostro ? (
-                <>
-                  <LoaderCircle
-                    size={20}
-                    className="girando"
-                  />
-                  Verificando...
-                </>
-              ) : (
-                <>
-                  <ScanFace size={20} />
-                  {modoCamaraFacial === "registro"
-                    ? "Registrar mi rostro"
-                    : "Verificar rostro"}
-                </>
-              )}
-            </button>
+            <div className="ideatech-facial-mensaje">
+              {mediaPipeListo
+                ? rostroValidoMediaPipe
+                  ? "MediaPipe: 1 rostro detectado"
+                  : `MediaPipe: ${cantidadRostrosMediaPipe} rostros detectados`
+                : "MediaPipe: cargando detector..."}
+            </div>
+
+            {modoCamaraFacial === "registro" && (
+              <button
+                type="button"
+                className="ideatech-login-boton"
+                onClick={() => void verificarRostro(false)}
+                disabled={
+                  iniciandoCamara ||
+                  verificandoRostro ||
+                  !streamRef.current ||
+                  !mediaPipeListo ||
+                  !rostroValidoMediaPipe
+                }
+              >
+                {verificandoRostro ? (
+                  <>
+                    <LoaderCircle
+                      size={20}
+                      className="girando"
+                    />
+                    Registrando...
+                  </>
+                ) : (
+                  <>
+                    <ScanFace size={20} />
+                    Registrar mi rostro
+                  </>
+                )}
+              </button>
+            )}
           </div>
         </div>
       )}
