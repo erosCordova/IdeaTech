@@ -15,7 +15,6 @@ from app.services.prediccion_service import (
     predecir_cancelacion,
 )
 
-
 router = APIRouter(
     prefix="/api/v1/predicciones",
     tags=["Predicciones ML"],

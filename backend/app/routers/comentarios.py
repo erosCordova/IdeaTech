@@ -17,7 +17,6 @@ from app.services.nlp_service import (
     analizar_comentario,
 )
 
-
 router = APIRouter(
     prefix="/api/v1/comentarios",
     tags=["Comentarios y NLP"],

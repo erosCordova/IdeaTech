@@ -19,7 +19,6 @@ from sklearn.preprocessing import (
     StandardScaler,
 )
 
-
 SEMILLA = 42
 CANTIDAD_REGISTROS = 1000
 VERSION_MODELO = "1.1.0"

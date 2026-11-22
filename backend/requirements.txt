@@ -16,6 +16,17 @@ joblib>=1.5.0,<2.0.0
 
 face-recognition-models==0.3.0
 dlib-bin==20.0.1
-opencv-python==5.0.0.93
+# headless: el backend solo decodifica/redimensiona imágenes (cv2.imdecode).
+# El paquete completo `opencv-python` exige libGL.so.1 y revienta en servers
+# sin interfaz gráfica (Render, Docker slim).
+opencv-python-headless==5.0.0.93
 Pillow>=12.0.0,<13.0.0
 setuptools==80.9.0
+
+# NOTA: `face_recognition` (importada por app/routers/facial.py) se instala
+# en un segundo paso y sin resolver dependencias, porque en PyPI exige
+# compilar dlib desde el fuente. `dlib-bin` ya provee ese módulo compilado.
+#
+# Instalar / desplegar con:
+#   pip install -r requirements.txt && pip install --no-deps -r requirements-facial.txt
+# (en Render, esa línea completa va en "Build & deploy command")

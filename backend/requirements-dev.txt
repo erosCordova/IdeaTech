@@ -1,0 +1,4 @@
+# Herramientas de desarrollo del backend (no van en producción).
+# Instalar: pip install -r requirements-dev.txt
+pytest>=8.0,<10.0
+ruff>=0.14,<1.0
