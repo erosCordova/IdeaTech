@@ -7,7 +7,6 @@ import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
-
 RUTA_BACKEND = Path(__file__).resolve().parents[2]
 
 RUTA_MODELO = (
@@ -132,13 +131,13 @@ def preparar_cliente(
         ),
         "tipo_plan": str(
             cliente["tipo_plan"]
-        ).lower(),
+        ).strip().lower(),
         "rubro_empresa": str(
             cliente["rubro_empresa"]
-        ).lower(),
+        ).strip().lower(),
         "tamano_empresa": str(
             cliente["tamano_empresa"]
-        ).lower(),
+        ).strip().lower(),
         "servidor_propio": bool(
             cliente["servidor_propio"]
         ),

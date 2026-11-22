@@ -1,9 +1,8 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from getpass import getpass
 from typing import Any
 
 from app.core.supabase_client import supabase
-
 
 CAMBIOS_CORREO = {
     "eroscordova27@gmail.com": "eros@ideatech.com",
@@ -111,7 +110,7 @@ def cambiar_correos() -> None:
                     "correo": correo_nuevo,
                     "fecha_actualizacion": (
                         datetime.now(
-                            timezone.utc,
+                            UTC,
                         ).isoformat()
                     ),
                 },
@@ -214,7 +213,7 @@ def crear_edwin() -> None:
     )
 
     fecha_actual = datetime.now(
-        timezone.utc,
+        UTC,
     ).isoformat()
 
     datos_perfil: dict[str, Any] = {

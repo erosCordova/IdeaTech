@@ -2,7 +2,6 @@ from supabase import Client, create_client
 
 from app.core.config import obtener_configuracion
 
-
 configuracion = obtener_configuracion()
 
 

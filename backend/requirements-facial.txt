@@ -1,0 +1,13 @@
+# Módulo de reconocimiento facial (app/routers/facial.py).
+#
+# Se instala SIEMPRE con --no-deps, después de requirements.txt:
+#
+#   pip install -r requirements.txt
+#   pip install --no-deps -r requirements-facial.txt
+#
+# ¿Por qué? `face_recognition` declara como dependencia el paquete `dlib`,
+# que en PyPI solo existe como fuente (tarda 10+ min en compilar y puede
+# reventar el build de Render). Las ruedas de `dlib-bin` (requirements.txt)
+# ya instalan el módulo `dlib` compilado, y el resto de dependencias
+# (face-recognition-models, numpy, Pillow y Click) también están fijadas allí.
+face_recognition==1.3.0

@@ -6,13 +6,12 @@ from app.core.supabase_client import supabase
 from app.routers.comentarios import (
     router as comentarios_router,
 )
-from app.routers.predicciones import (
-    router as predicciones_router,
-)
 from app.routers.facial import (
     router as facial_router,
 )
-
+from app.routers.predicciones import (
+    router as predicciones_router,
+)
 
 configuracion = obtener_configuracion()
 

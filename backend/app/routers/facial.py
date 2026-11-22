@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field
 from app.core.seguridad import obtener_usuario_actual
 from app.core.supabase_client import supabase
 
-
 router = APIRouter(
     prefix="/api/v1/facial",
     tags=["Reconocimiento Facial"],
